@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
+import { asset } from '../../data/site'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { Image } from '../ui/Image'
 
 const gallery = [
-  '/images/about/accueil.jpg',
-  '/images/about/salle-soin-1.jpg',
-  '/images/about/salle-soin-2.jpg',
-  '/images/about/salle-soin-3.jpg',
+  asset('/images/about/accueil.jpg'),
+  asset('/images/about/salle-soin-1.jpg'),
+  asset('/images/about/salle-soin-2.jpg'),
+  asset('/images/about/salle-soin-3.jpg'),
 ]
 
 export function About() {

@@ -1,3 +1,5 @@
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+
 export const siteConfig = {
   name: 'Avicenne Dental Clinique',
   shortName: 'Avicenne Dental',
@@ -24,15 +26,17 @@ export const siteConfig = {
   googleMapsUrl: 'https://maps.app.goo.gl/VGWE3FrUV5hDb3kE6',
   emergencyMessage:
     "Pour toute urgence, merci d'appeler avant de vous rendre sur place. Nous vous accueillerons dans les meilleurs délais.",
-  heroImage: '/images/hero/cabinet-hero.jpg',
-  logo: '/images/logo/logo.png',
-  avicennaImage: '/images/avicenna/avicenna-miniature.jpg',
+  heroImage: asset('/images/hero/cabinet-hero.jpg'),
+  logo: asset('/images/logo/logo.png'),
+  avicennaImage: asset('/images/avicenna/avicenna-miniature.jpg'),
   socialLinks: [
     { platform: 'Facebook', href: '[URL_FACEBOOK]' },
     { platform: 'Instagram', href: '[URL_INSTAGRAM]' },
     { platform: 'LinkedIn', href: '[URL_LINKEDIN]' },
   ], // TODO: RENAUD — remplacer par les vraies URLs si les profils existent
 } as const
+
+export { asset }
 
 export const openingHours = [
   { day: 'Lundi', hours: '9h00 – 18h30', opens: '09:00', closes: '18:30' },
