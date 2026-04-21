@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { teamMembers } from '../../data/team'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { Card } from '../ui/Card'
+import { Image } from '../ui/Image'
 
 export function Team() {
   const { ref, isVisible } = useScrollReveal<HTMLElement>()
@@ -24,7 +25,7 @@ export function Team() {
             >
               <Card className="group h-full overflow-hidden">
                 <div className="overflow-hidden">
-                  <img
+                  <Image
                     src={member.image}
                     alt={`${member.name}, ${member.role}`}
                     className="aspect-[4/4.3] w-full object-cover transition duration-500 group-hover:scale-105"

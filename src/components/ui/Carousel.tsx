@@ -38,10 +38,15 @@ export function Carousel({ items }: CarouselProps) {
             className="min-h-[18rem] flex-1"
             onTouchStart={(event) => setTouchStart(event.touches[0]?.clientX ?? null)}
             onTouchEnd={(event) => {
-              const end = event.changedTouches[0]?.clientX ?? 0
-              if (touchStart !== null && Math.abs(end - touchStart) > 40) {
-                goTo(end < touchStart ? index + 1 : index - 1)
+              if (touchStart === null) {
+                return
               }
+
+              const delta = touchStart - (event.changedTouches[0]?.clientX ?? touchStart)
+              if (Math.abs(delta) > 50) {
+                goTo(delta > 0 ? index + 1 : index - 1)
+              }
+
               setTouchStart(null)
             }}
           >

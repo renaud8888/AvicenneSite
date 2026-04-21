@@ -1,5 +1,5 @@
 import { Carousel } from '../ui/Carousel'
-import { testimonials } from '../../data/testimonials'
+import { googleReviewsUrl, testimonials } from '../../data/testimonials'
 
 export function Testimonials() {
   return (
@@ -12,6 +12,14 @@ export function Testimonials() {
           <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl">Parce que votre avis compte</h2>
         </div>
         <Carousel items={testimonials} />
+        <a
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex text-sm font-semibold text-[color-mix(in_srgb,var(--color-gold)_85%,white)] underline decoration-transparent underline-offset-4 transition hover:decoration-current"
+        >
+          Voir tous nos avis sur Google
+        </a>
       </div>
     </section>
   )

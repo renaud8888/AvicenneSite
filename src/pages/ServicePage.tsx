@@ -1,17 +1,18 @@
 import { Clock3, Mail, Phone } from 'lucide-react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { openingHours, siteConfig } from '../data/site'
 import { servicesBySlug } from '../data/services'
 import { SEO } from '../lib/seo'
+import NotFoundPage from './NotFoundPage'
 
 export default function ServicePage() {
   const { slug } = useParams()
   const service = slug ? servicesBySlug[slug as keyof typeof servicesBySlug] : undefined
 
   if (!service) {
-    return <Navigate to="/" replace />
+    return <NotFoundPage />
   }
 
   const gallery = service.images ?? [service.image]
@@ -89,7 +90,7 @@ export default function ServicePage() {
                   <p className="text-sm leading-7 text-[var(--color-muted)]">
                     Notre équipe vous accompagne pour un plan de traitement clair, transparent et adapté.
                   </p>
-                  <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" className="w-full">
+                  <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" variant="cta" className="w-full">
                     Prendre rendez-vous
                   </Button>
                 </div>
@@ -105,7 +106,9 @@ export default function ServicePage() {
                           <Clock3 className="h-4 w-4 text-[var(--color-sage)]" />
                           {item.day}
                         </span>
-                        <span className="text-[var(--color-muted)]">{item.hours}</span>
+                        <span className={item.opens && item.closes ? 'text-[var(--color-muted)]' : 'font-medium text-rose-500'}>
+                          {item.hours}
+                        </span>
                       </div>
                     ))}
                   </div>

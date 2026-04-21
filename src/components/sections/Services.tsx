@@ -35,6 +35,7 @@ export function Services() {
                     <Link
                       to={`/services/${service.slug}`}
                       className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-deep-blue)]"
+                      aria-label={`En savoir plus sur ${service.title}`}
                     >
                       En savoir plus <ArrowUpRight className="h-4 w-4" />
                     </Link>

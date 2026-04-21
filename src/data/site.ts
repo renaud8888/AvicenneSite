@@ -21,13 +21,17 @@ export const siteConfig = {
   },
   mapEmbedUrl:
     'https://www.google.com/maps?q=Boulevard%20Lambermont%2079%2C%201030%20Schaerbeek&z=15&output=embed',
+  googleMapsUrl: 'https://maps.app.goo.gl/VGWE3FrUV5hDb3kE6',
   emergencyMessage:
     "Pour toute urgence, merci d'appeler avant de vous rendre sur place. Nous vous accueillerons dans les meilleurs délais.",
-  heroImage:
-    'https://avicennedental.be/wp-content/uploads/2023/02/Avicenne-Dental_Web-25-1-3.jpg',
-  logo: 'https://avicennedental.be/wp-content/uploads/2023/01/logo_site_Plan-de-travail-1-300x75-1.png',
-  avicennaImage:
-    'https://avicennedental.be/wp-content/uploads/2023/01/Avicenna-miniatur.jpg',
+  heroImage: '/images/hero/cabinet-hero.jpg',
+  logo: '/images/logo/logo.png',
+  avicennaImage: '/images/avicenna/avicenna-miniature.jpg',
+  socialLinks: [
+    { platform: 'Facebook', href: '[URL_FACEBOOK]' },
+    { platform: 'Instagram', href: '[URL_INSTAGRAM]' },
+    { platform: 'LinkedIn', href: '[URL_LINKEDIN]' },
+  ], // TODO: RENAUD — remplacer par les vraies URLs si les profils existent
 } as const
 
 export const openingHours = [
@@ -37,6 +41,7 @@ export const openingHours = [
   { day: 'Jeudi', hours: '9h00 – 18h30', opens: '09:00', closes: '18:30' },
   { day: 'Vendredi', hours: '9h00 – 18h30', opens: '09:00', closes: '18:30' },
   { day: 'Samedi', hours: '10h00 – 18h00', opens: '10:00', closes: '18:00' },
+  { day: 'Dimanche', hours: 'Fermé', opens: undefined, closes: undefined },
 ] as const
 
 export const navigationItems = [

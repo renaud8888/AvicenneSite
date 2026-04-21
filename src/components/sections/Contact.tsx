@@ -9,6 +9,18 @@ export function Contact() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const name = formData.get('name') as string
+    const email = formData.get('email') as string
+    const phone = formData.get('phone') as string
+    const message = formData.get('message') as string
+
+    const subject = encodeURIComponent(`Contact via le site – ${name}`)
+    const body = encodeURIComponent(`Nom : ${name}\nEmail : ${email}\nTéléphone : ${phone}\n\nMessage :\n${message}`)
+
+    // TODO: RENAUD — remplacer par Resend/Formspree si souhaité
+    // Endpoint: '[FORMSPREE_ENDPOINT]'
+    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`
     setIsSubmitted(true)
   }
 
@@ -30,6 +42,14 @@ export function Contact() {
                 <p className="mt-2 text-sm leading-7 text-[var(--color-muted)]">
                   Boulevard Lambermont 79, 1030 Schaerbeek
                 </p>
+                <a
+                  href={siteConfig.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex text-sm font-semibold text-[var(--color-deep-blue)] underline decoration-[color-mix(in_srgb,var(--color-gold)_65%,white)] underline-offset-4"
+                >
+                  Voir sur Google Maps
+                </a>
               </div>
               <div className="space-y-3 text-sm">
                 {siteConfig.phones.map((phone) => (
@@ -63,69 +83,69 @@ export function Contact() {
             </div>
           </Card>
 
-          <Card className="overflow-hidden p-0">
-            <iframe
-              title="Carte du cabinet Avicenne Dental"
-              src={siteConfig.mapEmbedUrl}
-              className="h-72 w-full border-0 md:h-full md:min-h-[26rem]"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <Card className="p-6 md:p-8">
+            <form className="grid gap-5" onSubmit={onSubmit}>
+              <label className="space-y-2 text-sm font-medium text-[var(--color-ink)]">
+                <span>Nom</span>
+                <input
+                  required
+                  name="name"
+                  className="w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
+                />
+              </label>
+              <label className="space-y-2 text-sm font-medium text-[var(--color-ink)]">
+                <span>Email</span>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  className="w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
+                />
+              </label>
+              <label className="space-y-2 text-sm font-medium text-[var(--color-ink)]">
+                <span>Téléphone</span>
+                <input
+                  required
+                  type="tel"
+                  name="phone"
+                  className="w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
+                />
+              </label>
+              <label className="space-y-2 text-sm font-medium text-[var(--color-ink)]">
+                <span>Message</span>
+                <textarea
+                  required
+                  name="message"
+                  rows={6}
+                  className="w-full rounded-[1.25rem] border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
+                />
+              </label>
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <Button type="submit">Envoyer</Button>
+                {isSubmitted ? (
+                  <p className="text-sm text-[var(--color-sage)]">
+                    Merci, votre application email est prête avec votre message.
+                  </p>
+                ) : (
+                  <p className="text-sm text-[var(--color-muted)]">
+                    Cliquer sur Envoyer ouvrira votre application email.
+                  </p>
+                )}
+              </div>
+            </form>
           </Card>
         </div>
 
-        <Card className="p-6 md:p-8">
-          <form className="grid gap-5 md:grid-cols-2" onSubmit={onSubmit}>
-            <label className="space-y-2 text-sm font-medium text-[var(--color-ink)]">
-              <span>Nom</span>
-              <input
-                required
-                name="name"
-                className="w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
-              />
-            </label>
-            <label className="space-y-2 text-sm font-medium text-[var(--color-ink)]">
-              <span>Email</span>
-              <input
-                required
-                type="email"
-                name="email"
-                className="w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
-              />
-            </label>
-            <label className="space-y-2 text-sm font-medium text-[var(--color-ink)]">
-              <span>Téléphone</span>
-              <input
-                required
-                type="tel"
-                name="phone"
-                className="w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
-              />
-            </label>
-            <div className="hidden md:block" />
-            <label className="space-y-2 text-sm font-medium text-[var(--color-ink)] md:col-span-2">
-              <span>Message</span>
-              <textarea
-                required
-                name="message"
-                rows={6}
-                className="w-full rounded-[1.25rem] border border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] bg-white px-4 py-3 outline-none transition focus:border-[var(--color-deep-blue)]"
-              />
-            </label>
-            <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center md:justify-between">
-              <Button type="submit">Envoyer</Button>
-              {isSubmitted ? (
-                <p className="text-sm text-[var(--color-sage)]">
-                  Merci, votre message a bien été préparé côté interface.
-                </p>
-              ) : (
-                <p className="text-sm text-[var(--color-muted)]">
-                  Formulaire front-end uniquement, sans envoi serveur.
-                </p>
-              )}
-            </div>
-          </form>
-        </Card>
+        <div className="overflow-hidden rounded-[1.5rem] border border-[color-mix(in_srgb,var(--color-deep-blue)_8%,white)] shadow-[0_20px_45px_-36px_rgba(27,58,92,0.45)]">
+          <iframe
+            src={siteConfig.mapEmbedUrl}
+            title="Localisation Avicenne Dental Clinique"
+            className="h-[22rem] w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
       </div>
     </section>
   )

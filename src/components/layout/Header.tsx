@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import type { MouseEvent } from 'react'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { navigationItems, siteConfig } from '../../data/site'
@@ -18,6 +19,22 @@ export function Header() {
   }, [])
 
   const navHref = (href: string) => (location.pathname === '/' ? href : `/${href}`)
+
+  const handleMobileNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (location.pathname === '/') {
+      event.preventDefault()
+      setIsOpen(false)
+
+      // Laisser le temps a l'animation de fermeture (250ms) avant de scroller.
+      window.setTimeout(() => {
+        const id = href.replace('#', '')
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 280)
+      return
+    }
+
+    setIsOpen(false)
+  }
 
   return (
     <header
@@ -39,18 +56,18 @@ export function Header() {
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Navigation principale">
           {navigationItems.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href={navHref(item.href)}
+              to={navHref(item.href)}
               className="text-sm font-medium text-[var(--color-ink)] transition hover:text-[var(--color-deep-blue)]"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hidden lg:block">
-          <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+          <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" variant="cta">
             Prendre rendez-vous
           </Button>
         </div>
@@ -78,19 +95,20 @@ export function Header() {
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
               {navigationItems.map((item) => (
-            <a
-              key={item.label}
-              href={navHref(item.href)}
-              className="rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:bg-[var(--color-cream)]"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </a>
+                <Link
+                  key={item.label}
+                  to={navHref(item.href)}
+                  className="rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:bg-[var(--color-cream)]"
+                  onClick={(event) => handleMobileNavClick(event, item.href)}
+                >
+                  {item.label}
+                </Link>
               ))}
               <Button
                 href={siteConfig.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                variant="cta"
                 className="mt-3"
                 onClick={() => setIsOpen(false)}
               >

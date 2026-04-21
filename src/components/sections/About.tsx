@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { Image } from '../ui/Image'
 
 const gallery = [
-  'https://avicennedental.be/wp-content/uploads/2023/02/1-accueil-1-1-scaled.jpg',
-  'https://avicennedental.be/wp-content/uploads/2023/02/4.Avicenne-Dental_Web-14-1.jpg',
-  'https://avicennedental.be/wp-content/uploads/2023/02/5.Avicenne-Dental_Web-20-1.jpg',
-  'https://avicennedental.be/wp-content/uploads/2023/02/3.-Avicenne-Dental_Web-29-1-1.jpg',
+  '/images/about/accueil.jpg',
+  '/images/about/salle-soin-1.jpg',
+  '/images/about/salle-soin-2.jpg',
+  '/images/about/salle-soin-3.jpg',
 ]
 
 export function About() {
@@ -36,7 +37,7 @@ export function About() {
               key={image}
               className={`overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/70 p-2 shadow-[0_30px_60px_-44px_rgba(27,58,92,0.55)] ${index === 0 ? 'col-span-2 md:col-span-1 md:row-span-2' : ''}`}
             >
-              <img
+              <Image
                 src={image}
                 alt={`Vue du cabinet Avicenne Dental ${index + 1}`}
                 className={`w-full rounded-[1.1rem] object-cover ${index === 0 ? 'h-full min-h-[20rem]' : 'aspect-[4/3]'}`}

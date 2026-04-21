@@ -5,6 +5,7 @@ import { Layout } from './components/layout/Layout'
 const HomePage = lazy(() => import('./pages/HomePage'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
 const ConseilsPage = lazy(() => import('./pages/ConseilsPage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 type AppRouterProps = {
   initialEntries?: string[]
@@ -24,6 +25,7 @@ function RouterShell() {
           <Route path="/" element={<HomePage />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/conseils" element={<ConseilsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Suspense>

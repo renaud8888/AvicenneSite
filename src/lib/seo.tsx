@@ -60,24 +60,26 @@ export function SEO({ title, description, path, image = siteConfig.heroImage }: 
         '@type': 'GeoCoordinates',
         ...siteConfig.geo,
       },
-      openingHoursSpecification: openingHours.map((item) => ({
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek:
-          item.day === 'Lundi'
-            ? 'Monday'
-            : item.day === 'Mardi'
-              ? 'Tuesday'
-              : item.day === 'Mercredi'
-                ? 'Wednesday'
-                : item.day === 'Jeudi'
-                  ? 'Thursday'
-                  : item.day === 'Vendredi'
-                    ? 'Friday'
-                    : 'Saturday',
-        opens: item.opens,
-        closes: item.closes,
-      })),
-      sameAs: [siteConfig.bookingUrl],
+      openingHoursSpecification: openingHours
+        .filter((item) => item.opens && item.closes)
+        .map((item) => ({
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek:
+            item.day === 'Lundi'
+              ? 'Monday'
+              : item.day === 'Mardi'
+                ? 'Tuesday'
+                : item.day === 'Mercredi'
+                  ? 'Wednesday'
+                  : item.day === 'Jeudi'
+                    ? 'Thursday'
+                    : item.day === 'Vendredi'
+                      ? 'Friday'
+                      : 'Saturday',
+          opens: item.opens,
+          closes: item.closes,
+        })),
+      sameAs: [siteConfig.bookingUrl, ...siteConfig.socialLinks.map((link) => link.href).filter((href) => !href.startsWith('['))],
       hasMap: siteConfig.mapEmbedUrl,
       priceRange: '€€',
     })

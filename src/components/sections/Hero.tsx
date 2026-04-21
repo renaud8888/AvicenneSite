@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Phone } from 'lucide-react'
 import { siteConfig } from '../../data/site'
 import { Button } from '../ui/Button'
+import { Image } from '../ui/Image'
 
 export function Hero() {
   return (
@@ -29,7 +30,7 @@ export function Hero() {
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+            <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" variant="cta">
               Rendez-vous en ligne <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button href={siteConfig.phones[0].href} variant="secondary">
@@ -47,7 +48,7 @@ export function Hero() {
           <div className="absolute -left-6 top-10 hidden h-28 w-28 rounded-full bg-[color-mix(in_srgb,var(--color-gold)_18%,white)] blur-3xl lg:block" />
           <div className="absolute -bottom-6 right-8 hidden h-40 w-40 rounded-full bg-[color-mix(in_srgb,var(--color-sage)_18%,white)] blur-3xl lg:block" />
           <div className="rounded-[2rem] border border-white/70 bg-white/70 p-3 shadow-[0_40px_80px_-48px_rgba(27,58,92,0.55)] backdrop-blur-sm">
-            <img
+            <Image
               src={siteConfig.heroImage}
               alt="Cabinet Avicenne Dental avec fauteuil et équipements dentaires modernes"
               className="aspect-[5/4] w-full rounded-[1.5rem] object-cover"
