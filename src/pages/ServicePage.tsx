@@ -95,7 +95,7 @@ export default function ServicePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="primary"
-                    className="w-full rounded-xl border-[#2f6ca3] bg-[#2f6ca3] text-white hover:bg-[color-mix(in_srgb,#2f6ca3_88%,white)]"
+                    className="w-full !rounded-full border-[#2f6ca3] bg-[linear-gradient(135deg,#2f6ca3_0%,#214f7a_100%)] px-6 py-3.5 !text-white shadow-[0_20px_38px_-24px_rgba(33,79,122,0.8)] hover:bg-[linear-gradient(135deg,#3a79b5_0%,#285f92_100%)]"
                   >
                     Prendre rendez-vous
                   </Button>
