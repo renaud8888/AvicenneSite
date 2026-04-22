@@ -78,7 +78,8 @@ export function Carousel({ items }: CarouselProps) {
                   ) : null}
                   {items[index].link ? (
                     <a
-                      className="text-sm font-semibold text-[#2f6ca3] underline decoration-transparent transition hover:text-[var(--color-deep-blue)] hover:decoration-current"
+                      className="inline-flex w-fit rounded-full bg-[color-mix(in_srgb,var(--color-gold)_18%,white)] px-3 py-1.5 text-sm font-semibold underline decoration-transparent underline-offset-4 transition hover:bg-[color-mix(in_srgb,var(--color-gold)_28%,white)] hover:decoration-current"
+                      style={{ color: '#1b3a5c' }}
                       href={items[index].link}
                       target="_blank"
                       rel="noopener noreferrer"
