@@ -73,13 +73,12 @@ export function Carousel({ items }: CarouselProps) {
                   “{items[index].quote}”
                 </p>
                 <div className="space-y-1">
-                  <p className="font-semibold text-[var(--color-deep-blue)]">{items[index].name}</p>
                   {items[index].role ? (
                     <p className="text-sm text-[var(--color-muted)]">{items[index].role}</p>
                   ) : null}
                   {items[index].link ? (
                     <a
-                      className="text-sm font-semibold text-[var(--color-gold)] underline decoration-transparent transition hover:text-[color-mix(in_srgb,var(--color-gold)_85%,white)] hover:decoration-current"
+                      className="text-sm font-semibold text-[#2f6ca3] underline decoration-transparent transition hover:text-[var(--color-deep-blue)] hover:decoration-current"
                       href={items[index].link}
                       target="_blank"
                       rel="noopener noreferrer"

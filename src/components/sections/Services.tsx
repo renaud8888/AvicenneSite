@@ -27,13 +27,15 @@ export function Services() {
               >
                 <Card className="flex h-full flex-col overflow-hidden border-[color-mix(in_srgb,var(--color-deep-blue)_12%,white)] p-0">
                   <div className="bg-[linear-gradient(135deg,var(--color-deep-blue)_0%,#2f6ca3_100%)] px-6 py-5 text-white">
-                    <div className="inline-flex rounded-2xl bg-white/12 p-3 text-white ring-1 ring-white/20">
-                      <Icon className="h-6 w-6" />
+                    <div className="flex items-center gap-4">
+                      <div className="inline-flex rounded-2xl bg-white/12 p-3 text-white ring-1 ring-white/20">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">{service.title}</h3>
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-xl font-semibold text-[var(--color-deep-blue)]">{service.title}</h3>
-                    <p className="mt-3 flex-1 text-sm leading-7 text-[var(--color-muted)]">{service.excerpt}</p>
+                    <p className="flex-1 text-sm leading-7 text-[var(--color-muted)]">{service.excerpt}</p>
                     <Link
                       to={`/services/${service.slug}`}
                       className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[#2f6ca3] bg-[#2f6ca3] px-4 py-2 text-sm font-semibold !text-white transition hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,#2f6ca3_88%,white)]"
