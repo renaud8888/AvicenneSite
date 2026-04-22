@@ -46,7 +46,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link className="shrink-0" to="/" aria-label="Retour à l'accueil Avicenne Dental" onClick={() => setIsOpen(false)}>
-          <div className="rounded-xl bg-[#2f5d89] px-3 py-2 shadow-[0_12px_30px_-24px_rgba(27,58,92,0.55)]">
+          <div className="rounded-xl bg-[#4a6f93] px-3 py-2 shadow-[0_12px_30px_-24px_rgba(27,58,92,0.45)] ring-1 ring-[rgba(255,255,255,0.18)]">
             <img
               src={siteConfig.logo}
               alt="Logo Avicenne Dental"

@@ -90,7 +90,13 @@ export default function ServicePage() {
                   <p className="text-sm leading-7 text-[var(--color-muted)]">
                     Notre équipe vous accompagne pour un plan de traitement clair, transparent et adapté.
                   </p>
-                  <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" variant="cta" className="w-full">
+                  <Button
+                    href={siteConfig.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="primary"
+                    className="w-full rounded-xl border-[#2f6ca3] bg-[#2f6ca3] text-white hover:bg-[color-mix(in_srgb,#2f6ca3_88%,white)]"
+                  >
                     Prendre rendez-vous
                   </Button>
                 </div>
