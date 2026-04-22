@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { navigationItems, siteConfig } from '../../data/site'
 import { Button } from '../ui/Button'
+import { BrandMark } from '../ui/BrandMark'
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -46,12 +47,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link className="shrink-0" to="/" aria-label="Retour à l'accueil Avicenne Dental" onClick={() => setIsOpen(false)}>
-          <img
-            src={siteConfig.logo}
-            alt="Logo Avicenne Dental Clinique"
-            className="h-10 w-auto sm:h-12"
-            loading="eager"
-          />
+          <BrandMark compact />
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Navigation principale">

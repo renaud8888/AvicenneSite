@@ -42,9 +42,18 @@ export function Team() {
         </div>
         <Link
           to="/conseils"
-          className="inline-flex text-sm font-semibold text-[var(--color-deep-blue)] underline decoration-[color-mix(in_srgb,var(--color-gold)_65%,white)] underline-offset-4"
+          className="group block rounded-[1.75rem] border border-[color-mix(in_srgb,var(--color-deep-blue)_10%,white)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96)_0%,rgba(231,240,249,0.92)_100%)] p-6 shadow-[0_28px_60px_-46px_rgba(27,58,92,0.45)] transition duration-300 hover:-translate-y-1"
         >
-          Quelques conseils de notre part
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#2f6ca3]">Conseils pratiques</p>
+            <h3 className="font-[var(--font-display)] text-3xl text-[var(--color-deep-blue)]">Quelques conseils de notre part</h3>
+            <p className="max-w-2xl text-sm leading-7 text-[var(--color-muted)]">
+              Retrouve nos recommandations simples pour les dents sensibles, les prothèses, les gencives, les enfants et le blanchiment.
+            </p>
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#2f6ca3] transition group-hover:translate-x-1">
+              Lire les conseils
+            </span>
+          </div>
         </Link>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import type { Testimonial } from '../../data/testimonials'
 import { Card } from './Card'
@@ -15,7 +15,7 @@ export function Carousel({ items }: CarouselProps) {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setIndex((current) => (current + 1) % items.length)
-    }, 5500)
+    }, 7200)
 
     return () => window.clearInterval(interval)
   }, [items.length])
@@ -59,8 +59,15 @@ export function Carousel({ items }: CarouselProps) {
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 className="space-y-6"
               >
-                <div className="inline-flex rounded-full bg-[var(--color-cream)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-deep-blue)]">
-                  Témoignage {index + 1}
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="inline-flex rounded-full bg-[color-mix(in_srgb,var(--color-gold)_18%,white)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[color-mix(in_srgb,var(--color-deep-blue)_78%,#2f6ca3)]">
+                    Témoignage numéro {index + 1}
+                  </div>
+                  <div className="flex items-center gap-1 text-[#f4c542]" aria-label="Avis 5 étoiles">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <Star key={starIndex} className="h-4 w-4 fill-current" />
+                    ))}
+                  </div>
                 </div>
                 <p className="text-lg leading-8 text-[var(--color-ink)] md:text-[1.4rem]">
                   “{items[index].quote}”
@@ -72,7 +79,7 @@ export function Carousel({ items }: CarouselProps) {
                   ) : null}
                   {items[index].link ? (
                     <a
-                      className="text-sm font-medium text-[var(--color-sage)] underline decoration-transparent transition hover:decoration-current"
+                      className="text-sm font-semibold text-[#2f6ca3] underline decoration-transparent transition hover:decoration-current"
                       href={items[index].link}
                       target="_blank"
                       rel="noopener noreferrer"
