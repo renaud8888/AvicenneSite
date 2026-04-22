@@ -2,7 +2,6 @@ import { Facebook, Instagram, Linkedin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { navigationItems, siteConfig } from '../../data/site'
 import { Button } from '../ui/Button'
-import { BrandMark } from '../ui/BrandMark'
 
 const socialIcons = {
   Facebook,
@@ -18,7 +17,9 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
           <div className="space-y-4">
-            <BrandMark className="items-center" textClassName="[&>p:first-child]:text-white [&>p:last-child]:text-[color-mix(in_srgb,var(--color-gold)_78%,white)]" />
+            <div className="h-14 w-10 overflow-hidden">
+              <img src={siteConfig.logo} alt="Logo Avicenne Dental" className="h-14 max-w-none object-cover object-left" loading="lazy" />
+            </div>
             <p className="max-w-xl text-sm leading-7 text-white/75">
               Cabinet dentaire conventionné à Schaerbeek, orienté vers des soins précis, humains et confortables.
             </p>
@@ -27,7 +28,7 @@ export function Footer() {
             href={siteConfig.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-deep-blue)] hover:bg-[color-mix(in_srgb,var(--color-gold)_88%,white)]"
+            className="rounded-xl border-[var(--color-gold)] bg-[var(--color-gold)] px-5 py-3 text-[var(--color-deep-blue)] shadow-[0_18px_32px_-24px_rgba(201,168,76,0.65)] hover:bg-[color-mix(in_srgb,var(--color-gold)_88%,white)]"
           >
             Prendre rendez-vous
           </Button>

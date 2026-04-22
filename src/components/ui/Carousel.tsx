@@ -61,7 +61,7 @@ export function Carousel({ items }: CarouselProps) {
               >
                 <div className="flex flex-wrap items-center gap-4">
                   <div className="inline-flex rounded-full bg-[color-mix(in_srgb,var(--color-gold)_18%,white)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[color-mix(in_srgb,var(--color-deep-blue)_78%,#2f6ca3)]">
-                    Témoignage numéro {index + 1}
+                    {items[index].name}
                   </div>
                   <div className="flex items-center gap-1 text-[#f4c542]" aria-label="Avis 5 étoiles">
                     {Array.from({ length: 5 }).map((_, starIndex) => (
@@ -79,7 +79,7 @@ export function Carousel({ items }: CarouselProps) {
                   ) : null}
                   {items[index].link ? (
                     <a
-                      className="text-sm font-semibold text-[#2f6ca3] underline decoration-transparent transition hover:decoration-current"
+                      className="text-sm font-semibold text-[var(--color-gold)] underline decoration-transparent transition hover:text-[color-mix(in_srgb,var(--color-gold)_85%,white)] hover:decoration-current"
                       href={items[index].link}
                       target="_blank"
                       rel="noopener noreferrer"

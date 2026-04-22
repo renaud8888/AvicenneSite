@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Phone } from 'lucide-react'
 import { asset, siteConfig } from '../../data/site'
 import { Button } from '../ui/Button'
-import { BrandMark } from '../ui/BrandMark'
 import { Image } from '../ui/Image'
 
 export function Hero() {
@@ -27,7 +26,6 @@ export function Hero() {
             />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,254,251,0.96)_0%,rgba(255,254,251,0.84)_48%,rgba(255,254,251,0.98)_100%)]" />
           </div>
-          <BrandMark className="rounded-[1.6rem] border border-white/70 bg-white/75 px-5 py-4 shadow-[0_24px_50px_-42px_rgba(27,58,92,0.45)] backdrop-blur-sm w-fit" />
           <span className="inline-flex rounded-full border border-[color-mix(in_srgb,var(--color-gold)_35%,white)] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-deep-blue)]">
             Cabinet conventionné – Tiers payant
           </span>

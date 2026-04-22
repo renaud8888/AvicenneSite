@@ -36,7 +36,7 @@ export function Services() {
                     <p className="mt-3 flex-1 text-sm leading-7 text-[var(--color-muted)]">{service.excerpt}</p>
                     <Link
                       to={`/services/${service.slug}`}
-                      className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[#2f6ca3] bg-[#2f6ca3] px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,#2f6ca3_88%,white)]"
+                      className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[#2f6ca3] bg-[#2f6ca3] px-4 py-2 text-sm font-semibold !text-white transition hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,#2f6ca3_88%,white)]"
                       aria-label={`En savoir plus sur ${service.title}`}
                     >
                       En savoir plus <ArrowUpRight className="h-4 w-4" />
