@@ -6,7 +6,6 @@ import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { Image } from '../ui/Image'
 
 const gallery = [
-  asset('/images/hero/cabinet-hero.jpg'),
   asset('/images/about/accueil.jpg'),
   asset('/images/about/salle-soin-1.jpg'),
   asset('/images/about/salle-soin-2.jpg'),
