@@ -46,12 +46,14 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link className="shrink-0" to="/" aria-label="Retour à l'accueil Avicenne Dental" onClick={() => setIsOpen(false)}>
-          <img
-            src={siteConfig.logo}
-            alt="Logo Avicenne Dental"
-            className="h-10 w-auto sm:h-12"
-            loading="eager"
-          />
+          <div className="rounded-xl bg-[var(--color-deep-blue)] px-3 py-2 shadow-[0_12px_30px_-24px_rgba(27,58,92,0.7)]">
+            <img
+              src={siteConfig.logo}
+              alt="Logo Avicenne Dental"
+              className="h-9 w-auto sm:h-10"
+              loading="eager"
+            />
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Navigation principale">

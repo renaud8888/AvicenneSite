@@ -17,8 +17,8 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
           <div className="space-y-4">
-            <div className="h-14 w-10 overflow-hidden">
-              <img src={siteConfig.logo} alt="Logo Avicenne Dental" className="h-14 max-w-none object-cover object-left" loading="lazy" />
+            <div className="rounded-xl bg-[var(--color-deep-blue)] px-3 py-2 ring-1 ring-white/10">
+              <img src={siteConfig.logo} alt="Logo Avicenne Dental" className="h-10 w-auto" loading="lazy" />
             </div>
             <p className="max-w-xl text-sm leading-7 text-white/75">
               Cabinet dentaire conventionné à Schaerbeek, orienté vers des soins précis, humains et confortables.
