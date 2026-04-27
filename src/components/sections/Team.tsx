@@ -28,9 +28,9 @@ export function Team() {
                   <Image
                     src={member.image}
                     alt={`${member.name}, ${member.role}`}
-                    className="aspect-[4/4.3] w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="h-44 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-48 lg:h-52"
                     width={500}
-                    height={538}
+                    height={500}
                     loading="eager"
                     decoding="async"
                   />
