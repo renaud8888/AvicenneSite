@@ -29,7 +29,10 @@ export function Team() {
                     src={member.image}
                     alt={`${member.name}, ${member.role}`}
                     className="aspect-[4/4.3] w-full object-cover transition duration-500 group-hover:scale-105"
-                    loading="lazy"
+                    width={500}
+                    height={538}
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
                 <div className="space-y-2 p-5">
