@@ -1,15 +1,25 @@
 import '@testing-library/jest-dom/vitest'
 import { render, screen, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
+import { describe, expect, it, vi } from 'vitest'
 import { AppRouter } from '../App'
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import { faqItems } from '../data/faq'
 import { services } from '../data/services'
+import { siteConfig } from '../data/site'
 import { teamMembers } from '../data/team'
+
+const publicPathForAsset = (assetUrl: string) => join(process.cwd(), 'public', assetUrl.replace(/^\//, ''))
+
+function BrokenComponent() {
+  throw new Error('Erreur de test')
+}
 
 describe('Avicenne Dental smoke tests', () => {
   it("la page d'accueil se rend sans crash", async () => {
     render(<AppRouter initialEntries={['/']} />)
-    expect(await screen.findByRole('heading', { name: /avicenne dental clinique/i })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: /un cabinet humain, moderne/i })).toBeInTheDocument()
   })
 
   it('le header contient les 7 liens de navigation', async () => {
@@ -98,5 +108,34 @@ describe('Avicenne Dental smoke tests', () => {
       expect(image).toHaveAttribute('alt')
       expect(image.getAttribute('alt')).not.toBe('')
     })
+  })
+
+  it('les assets critiques existent dans public', () => {
+    const assetUrls = [
+      siteConfig.heroImage,
+      siteConfig.logo,
+      siteConfig.avicennaImage,
+      ...services.flatMap((service) => [service.image, ...(service.images ?? []), ...(service.sections ?? []).flatMap((section) => section.image ?? [])]),
+      ...teamMembers.map((member) => member.image),
+    ]
+
+    for (const assetUrl of new Set(assetUrls)) {
+      expect(existsSync(publicPathForAsset(assetUrl)), assetUrl).toBe(true)
+    }
+  })
+
+  it("affiche un secours au lieu d'une page blanche en cas d'erreur React", () => {
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined)
+
+    render(
+      <ErrorBoundary resetKey="/">
+        <BrokenComponent />
+      </ErrorBoundary>,
+    )
+
+    expect(screen.getByRole('heading', { name: /une erreur est survenue/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /retour a l'accueil/i })).toHaveAttribute('href', '/')
+
+    consoleError.mockRestore()
   })
 })

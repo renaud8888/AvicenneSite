@@ -28,19 +28,19 @@ const buildClassName = (variant: SharedProps['variant'], className?: string) =>
   [classes.base, classes[variant ?? 'primary'], className].filter(Boolean).join(' ')
 
 export function Button(props: AnchorProps | NativeButtonProps) {
-  const { children, variant = 'primary', className } = props
+  const { children, variant = 'primary', className, ...rest } = props
 
-  if ('href' in props) {
-    const { href, ...rest } = props
+  if ('href' in rest) {
+    const { href, ...anchorProps } = rest
     return (
-      <a className={buildClassName(variant, className)} href={href} {...rest}>
+      <a className={buildClassName(variant, className)} href={href} {...anchorProps}>
         {children}
       </a>
     )
   }
 
   return (
-    <button className={buildClassName(variant, className)} {...props}>
+    <button className={buildClassName(variant, className)} {...rest}>
       {children}
     </button>
   )

@@ -5,6 +5,7 @@ import { Card } from '../components/ui/Card'
 import { openingHours, siteConfig } from '../data/site'
 import { servicesBySlug } from '../data/services'
 import { SEO } from '../lib/seo'
+import { Image } from '../components/ui/Image'
 import NotFoundPage from './NotFoundPage'
 
 export default function ServicePage() {
@@ -46,7 +47,7 @@ export default function ServicePage() {
               <div className="grid gap-4 md:grid-cols-2">
                 {gallery.map((image, index) => (
                   <div key={image} className={index === 0 && gallery.length === 1 ? 'md:col-span-2' : ''}>
-                    <img
+                    <Image
                       src={image}
                       alt={`${service.title} illustration ${index + 1}`}
                       className="aspect-[16/10] w-full rounded-[1.5rem] object-cover shadow-[0_28px_60px_-48px_rgba(27,58,92,0.65)]"
@@ -67,7 +68,7 @@ export default function ServicePage() {
                   {service.sections.map((section) => (
                     <Card key={section.title} className="overflow-hidden">
                       {section.image ? (
-                        <img
+                        <Image
                           src={section.image}
                           alt={`${section.title} pour ${service.title}`}
                           className="aspect-[4/3] w-full object-cover"

@@ -26,15 +26,34 @@ const ensureMetaTag = (selector: string, attribute: 'name' | 'property', value: 
   return tag
 }
 
+const toAbsoluteUrl = (url: string) => {
+  if (/^https?:\/\//i.test(url)) {
+    return url
+  }
+
+  return `${siteConfig.siteUrl}${url.startsWith('/') ? url : `/${url}`}`
+}
+
 export function SEO({ title, description, path, image = siteConfig.heroImage }: SEOProps) {
   useEffect(() => {
+    const absoluteImage = toAbsoluteUrl(image)
+    const absoluteUrl = toAbsoluteUrl(path)
+
     document.title = title
 
     ensureMetaTag(META_SELECTORS.description, 'name', 'description').content = description
     ensureMetaTag(META_SELECTORS.ogTitle, 'property', 'og:title').content = title
     ensureMetaTag(META_SELECTORS.ogDescription, 'property', 'og:description').content = description
-    ensureMetaTag(META_SELECTORS.ogImage, 'property', 'og:image').content = image
-    ensureMetaTag(META_SELECTORS.ogUrl, 'property', 'og:url').content = `${siteConfig.siteUrl}${path}`
+    ensureMetaTag(META_SELECTORS.ogImage, 'property', 'og:image').content = absoluteImage
+    ensureMetaTag(META_SELECTORS.ogUrl, 'property', 'og:url').content = absoluteUrl
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.rel = 'canonical'
+      document.head.appendChild(canonical)
+    }
+    canonical.href = absoluteUrl
 
     let script = document.getElementById('ld-dentist')
     if (!script) {
@@ -48,7 +67,7 @@ export function SEO({ title, description, path, image = siteConfig.heroImage }: 
       '@context': 'https://schema.org',
       '@type': 'Dentist',
       name: siteConfig.name,
-      image,
+      image: absoluteImage,
       url: siteConfig.siteUrl,
       telephone: siteConfig.phones[0].label,
       email: siteConfig.email,
